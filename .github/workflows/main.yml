@@ -30,8 +30,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ubuntu/task-9|| { echo "Directory not found"; exit 1; }
-          docker build -t flask-app .
-          docker stop flask-app-container || true
-          docker rm flask-app-container || true
-          docker run -d -p 80:5000 --name flask-app-container flask-app
+          docker build -t app .
+          docker stop app-container || true
+          docker rm app-container || true
+          docker run -d -p 80:5000 --name app-container app
         EOF
