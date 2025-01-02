@@ -44,8 +44,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ubuntu/task-9 || { echo "Directory not found"; exit 1; }
-          docker pull your-docker-repo/app:latest
+          docker pull sahal6282/docker/app:latest
           docker stop app-container || true
           docker rm app-container || true
-          docker run -d -p 80:5000 --name app-container your-docker-repo/app:latest
+          docker run -d -p 80:5000 --app-container sahal6282/docker/app:latest
         EOF
