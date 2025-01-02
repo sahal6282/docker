@@ -46,6 +46,8 @@ jobs:
       # Deploy Docker container to EC2
       - name: Deploy Docker image to EC2
         run: |
+          # Add the EC2 private key to the SSH agent
+          echo "${{ secrets.EC2_SSH_KEY }}" | tr -d '\r' | ssh-add -
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             # Pull the latest image from DockerHub
             docker pull sahal6282/docker:latest
